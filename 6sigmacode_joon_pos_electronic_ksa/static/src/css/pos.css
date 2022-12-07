@@ -1,0 +1,6 @@
+.sh_pos_receipt.pos-receipt table.sh-receipt-header .sh_width_28{width: 33%;padding: 2px;}
+.sh_pos_receipt.pos-receipt table.sh-receipt-header .sh_width_3{width: 1%;padding: 2px;}
+.sh_pos_receipt.pos-receipt table.sh-receipt-header .sh_width_38{width: 33%;padding: 2px;}
+
+
+.sh_pos_receipt.pos-receipt .sh-orderline-header .sh_orderline_table tbody td{vertical-align: top;}

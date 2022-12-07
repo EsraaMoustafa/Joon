@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+         <xpath expr="//span[@id='title_english']" position="replace">
+             <div style="text-align:center;">
+                 <span id="title_english">Simplified Tax Invoice</span>
+             </div>
+        </xpath>
+
+        <xpath expr="//span[@id='title_arabic']" position="replace">
+            <div style="text-align:center;">
+                <span id="title_arabic">فاتورة ضريبية مبسطة</span>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('pos-invoice-header')]/table[hasclass('sh-receipt-header')]/tr[1]/td[3]/span[1]" position='replace'>
+            <span>
+                <t t-if='env.pos.config.name'>
+                    <t t-esc='env.pos.config.name'></t>
+                </t> -
+                <t t-if='receipt.name'>
+                    <t t-esc='receipt.name' />
+                </t>
+            </span>
+        </xpath>
+
+        <xpath expr="//div[hasclass('pos-receipt-header')]/table[hasclass('sh-receipt-header')]/tr[1]/td[5]" position='replace'>
+            <td class="sh_text_left sh_width_28">
+                <span class="sh_receipt_header_fix_width" style="float:right">سجل تجاري</span>
+            </td>
+        </xpath>
+
+        <xpath expr="//div[hasclass('pos-receipt-header')]/table[hasclass('sh-receipt-header')]/tr[2]/td[1]" position='replace'>
+            <td class="sh_text_left sh_width_28">
+                <span class="sh_receipt_header_fix_width">VAT No.</span>
+            </td>
+        </xpath>
+
+        <xpath expr="//div[hasclass('pos-receipt-header')]/table[hasclass('sh-receipt-header')]/tr[3]/td[1]" position='replace'>
+            <td class="sh_text_left sh_width_28">
+                <span class="sh_receipt_header_fix_width">Branch</span>
+            </td>
+        </xpath>
+
+        <xpath expr="//div[hasclass('pos-receipt-header')]/table[hasclass('sh-receipt-header')]/tr[3]/td[5]" position='replace'>
+            <td class="sh_text_right sh_width_28">
+                <span class="sh_receipt_header_fix_width">اسم الفرع</span>
+            </td>
+        </xpath>
+
+        <xpath expr="//div[hasclass('orderlines')]/table[hasclass('sh_orderline_table')]/th[hasclass('sh_text_left')]" position="after">
+            <th class="sh_text_center" style="padding: 5px;">
+                <span style="padding: 5px 0px;line-height: 20px;"> الضريبة </span>
+                <br />
+                <span style="padding: 5px 0px;"> tax amount </span>
+            </th>
+        </xpath>
+        <xpath expr="//div[hasclass('orderlines')]/table[hasclass('sh_orderline_table')]/tr[1]/t[2]/td[hasclass('sh_text_left')]" position="after">
+            <td class="sh_text_center" style="padding: 8px 5px 8px 0px;">
+                <t t-if="line.tax">
+                    <t t-esc="env.pos.format_currency(line.tax)"/>
+                </t>
+            </td>
+        </xpath>
+        <xpath expr="//div[hasclass('after-footer')]" position="before">
+            <div id="footer_j" style="height: 150px;"></div>
+        </xpath>
+    </t>
+</templates>
